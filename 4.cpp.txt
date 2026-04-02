@@ -1,0 +1,40 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+	int q = 0, count = 0;
+	char x;
+	ifstream in("arb.txt");
+	ofstream out("out.txt");
+
+	if (!in)
+	{
+		cout << "Can't open file!";
+		system("pause");
+		exit(-1);
+	}
+
+	while (in >> x)
+		out << x;
+	out << endl;
+
+	in.close();
+	in.open("arb.txt");
+
+	while (in >> x)
+	{
+		switch (q)
+		{
+		case 0: if (x == 'a') q = 1; else q = 0; break;
+		case 1: if (x != '.' && x != ',') q = 1;
+			  else { q = 0; count++; }
+		}
+		out << x << ' ' << q << ' ' << count << endl;
+	}
+	out << "Number of words with 'a'  = " << count;
+	system("pause");
+	return 0;
+}

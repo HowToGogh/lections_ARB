@@ -1,0 +1,51 @@
+#include <iostream>
+#include <fstream>
+#include <cstring>
+
+using namespace std;
+
+int main()
+{
+	int q = 0, count = 0;
+	char x;
+
+	ifstream in("arb.txt");
+	ofstream out("out.txt");
+	if (!in)
+	{
+		cout << "Can't open file!";
+		system("pause");
+		exit(-1);
+	}
+
+	while (in >> x)
+		out << x;
+	out << endl;
+	in.close();
+	in.open("arb.txt");
+	while (in >> x)
+	{
+
+
+		switch (q)
+		{
+		case 0: if (x == 'a') q = 1; else q = 2; break;
+		case 1: if (x == 'z') q = 3;
+			  else if (x == ',' || x == '.') q = 0;
+			  else q = 1; break;
+		case 2: if (x == ',' || x == '.') q = 0;
+			  else q = 2; break;
+		case 3: if (x == ',' || x == '.') { count++; q = 0; }
+			  else if (x == 'z') q = 3;
+			  else q = 1; break;
+
+		default: break;
+		}
+		out << x << ' ' << q << ' ' << count << endl;
+	}
+	out << x << ' ' << q << ' ' << count << endl;
+
+	out << "The number of a..z words  = " << count << endl;
+	system("pause");
+	return 0;
+}

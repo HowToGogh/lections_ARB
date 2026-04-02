@@ -1,0 +1,106 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+int  main()
+{
+	char a[80];
+	int q, i, n;
+	cout << "Enter string: " << endl;
+	cin >> a;
+	n = strlen(a);
+	q = 0;
+	cout << "n=" << n << endl;
+	for (i = 0; i < n && q != 5; i++)
+		switch (q)
+		{
+		case 0:
+			switch (a[i])
+			{
+			case '+':q = 1; break;
+			case '-':q = 1; break;
+			case '0':q = 3; break;
+			case '1':q = 2; break;
+			case '2':q = 2; break;
+			case '3':q = 2; break;
+			case '4':q = 2; break;
+			case '5':q = 2; break;
+			case '6':q = 2; break;
+			case '7':q = 2; break;
+			case '8':q = 2; break;
+			case '9':q = 2; break;
+			default:q = 5; break;
+			}
+			break;
+
+
+
+
+
+		case 1:
+			switch (a[i])
+			{
+			case '0':q = 3; break;
+			case '1':q = 2; break;
+			case '2':q = 2; break;
+			case '3':q = 2; break;
+			case '4':q = 2; break;
+			case '5':q = 2; break;
+			case '6':q = 2; break;
+			case '7':q = 2; break;
+			case '8':q = 2; break;
+			case '9':q = 2; break;
+			default:q = 5; break;
+			}
+			break;
+
+		case 2:
+			switch (a[i])
+			{
+			case '.':q = 4; break;
+			case '0':q = 2; break;
+			case '1':q = 2; break;
+			case '2':q = 2; break;
+			case '3':q = 2; break;
+			case '4':q = 2; break;
+			case '5':q = 2; break;
+			case '6':q = 2; break;
+			case '7':q = 2; break;
+			case '8':q = 2; break;
+			case '9':q = 2; break;
+			default:q = 5; break;
+			}
+			break;
+
+		case 3:
+			switch (a[i])
+			{
+			case '.':q = 4; break;
+			default:q = 5; break;
+			}
+			break;
+
+
+		case 4:
+			switch (a[i])
+			{
+			case '0':q = 4; break;
+			case '1':q = 4; break;
+			case '2':q = 4; break;
+			case '3':q = 4; break;
+			case '4':q = 4; break;
+			case '5':q = 4; break;
+			case '6':q = 4; break;
+			case '7':q = 4; break;
+			case '8':q = 4; break;
+			case '9':q = 4; break;
+			default:q = 5; break;
+			}
+			break;
+		default: q = 5; break;
+		}
+	if ((q == 2) || (q == 3)) cout << "integer" << endl;
+	if (q == 4)cout << "real" << endl;
+	if (q == 5) cout << "not integer and not real" << endl;
+	system("pause");
+	return 0;
+}
