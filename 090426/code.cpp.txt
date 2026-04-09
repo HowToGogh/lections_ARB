@@ -1,0 +1,141 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+////////////////////////////////////////////////////////////////////////
+void create(ifstream& in, int** x, int n)
+{
+	int i, j;
+	for (i = 0; i < n; i++)
+		for (j = 0; j < n; j++)
+			in >> x[i][j];
+}
+///////////////////////////////////////////////////////////////////////
+void show(int** x, int n)
+{
+	int i, j;
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < n; j++)
+			cout << x[i][j] << " ";
+		cout << endl;
+	}
+}
+/////////////////////////////////////////////////////////////////
+void show(int* x, int n)
+{
+	int i;
+	for (i = 0; i < n; i++)
+		cout << x[i] << " ";
+	cout << endl;
+}
+void order(int* b, int* l, int n)
+{
+	int i, j;
+	int* c = new int[n + 1];
+	for (i = 0; i < n; i++)
+		c[i] = b[i];
+	c[n] = 100;
+
+	for (i = 0; i < n; i++)
+	{
+		int min = n;
+
+		for (j = 0; j < n; j++)
+			if (c[j] < c[min]) min = j;
+
+		l[i] = min;
+		c[min] = 100;
+	}
+
+}
+///////////////////////////////////////////////////////////////////////
+bool condition1(int i, int** b, bool* d, int n)
+{
+	bool flag = true;
+
+	for (int j = 0; j < n; j++)
+	{
+		if (b[i][j] && d[j])
+		{
+			flag = false;
+			break;
+		}
+	}
+	return flag;
+}
+//////////////////////////////////////////////////////////////////////
+bool condition2(int i, int** b, bool* d, int n)
+{
+	bool flag = false;
+
+	for (int y = 0; y < n; y++)
+	{
+		if (b[i][y] && !d[y])
+		{
+			flag = true;
+			for (int j = 0; j < n; j++)
+
+				if (b[y][j] && d[j] && (j != i))
+					flag = false;
+
+			if (flag) break;
+		}
+	}
+	return flag;
+}
+//////////////////////////////////////////////////////////////////////
+int main()
+{
+	ifstream in("grapf5.txt");
+	int n, i, j;
+	cout << "enter number of vertexes: ";
+	cin >> n;
+
+	int** matr = new int* [n];
+	for (i = 0; i < n; i++)
+		matr[i] = new int[n];
+
+	bool* d = new bool[n];
+	int* e = new int[n];
+	int* b = new int[n];
+	for (i = 0; i < n; i++)
+	{
+		e[i] = 0;
+		b[i] = 0;
+	}
+	if (!in)
+	{
+		cout << "can't open file" << endl;
+		system("pause");
+		exit(-1);
+	}
+	create(in, matr, n);
+	in.close();
+	cout << "matr = " << endl;
+	show(matr, n);
+
+	for (i = 0; i < n; i++)
+		for (j = 0; j < n; j++)
+			if (matr[i][j]) b[i]++;
+
+	cout << " vector b: " << endl;
+	show(b, n);
+
+	order(b, e, n);
+	cout << "  after ordering vector e: " << endl;
+	show(e, n);
+
+	for (i = 0; i < n; i++) d[i] = true;
+
+	for (i = 0; i < n; i++)
+		if (condition1(e[i], matr, d, n) ||
+			condition2(e[i], matr, d, n))
+			d[e[i]] = 1;	  else d[e[i]] = 0;
+	cout << "minimal support set=  ( ";
+	for (i = 0; i < n; i++)
+		cout << d[i] << " ";
+	cout << ")" << endl;
+	system("pause");
+	return 0;
+}
+
