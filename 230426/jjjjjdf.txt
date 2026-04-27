@@ -1,0 +1,463 @@
+//#include <iostream>
+//#include <fstream>
+//using namespace std;
+//
+//struct node
+//{
+//	int data;
+//	node* next;
+//};
+//////////////////////////////////////////////////
+//bool empty_list(node* top)
+//{
+//	return top == NULL;
+//}
+////////////////////////////////////////////////	
+////void create_list(node*& top, int n)
+////{
+////	int i;
+////	node* p;
+////	top = new node;
+////	top = NULL;
+////	for (i = 0; i < n; i++)
+////	{
+////		p = new node;
+////		cout << " enter p->data=";
+////		cin >> p->data;
+////		p->next = top;
+////		top = p;
+////	}
+////}
+////////////////////////////////////////////////////
+//void pop(node*& top, int& data) // get data from list
+//{
+//	node* p;
+//	if (!empty_list(top))
+//	{
+//		data = top->data;
+//		p = top->next;
+//		delete top;
+//		top = p;
+//	}
+//}
+////////////////////////////////////////////
+//int pop1(node*& top) // get data from list
+//{
+//	int data;
+//	node* p;
+//	if (top)
+//	{
+//		data = top->data;
+//		p = top->next;
+//		delete top;
+//		top = p;
+//	}
+//	return data;
+//}
+///////////////////////////////////////////
+//void push(node*& top, int data) // put data to list 
+//{
+//	node* p;
+//	p = new node;
+//	p->data = data;
+//	p->next = top;
+//	top = p;
+//}
+//
+//void push_back(node*& top, int data) // put data to list 
+//{
+//	node* p;
+//	p = new node;
+//	//p->data = data;
+//	//p->next = top;
+//	//top = p;
+//	
+//}
+//
+//node* create_list(ifstream& f)
+//{
+//
+//	int i, data;
+//	node* top = nullptr;
+//	while (f >> data) push(top, data);
+//	return top;
+//}
+///////////////////////////////////////////
+//void show_list(ofstream& f, node* top)
+//{
+//	for (node* p = top; p; p = p->next)
+//	{
+//		f << p->data << " ";
+//	}
+//	f << endl;
+//}
+///////////////////////////////////////////////	
+//node* previous(node* top, node* p) // pointer p define 
+//// task: find previous pointer
+//{
+//	node* pr, * q;
+//	q = top;
+//	pr = NULL;
+//	while (q != p && q)
+//	{
+//		pr = q;
+//		q = q->next;
+//	}
+//
+//	if (q == p) return pr;
+//	return NULL;
+//}
+////////////////////////////////////////////
+//void insert_list_before(node*& top, node* q, int x)
+//// insert x before position q
+//{
+//	node* p, * r;
+//	p = new node;
+//	r = previous(top, q);
+//	if (q == top) push(top, x);
+//	else
+//		if (r == NULL)
+//		{
+//			cout << " sorry, impossible insert element " << endl;
+//			exit(-1);
+//		}
+//		else
+//		{
+//			p->data = x;
+//			p->next = r->next;
+//			r->next = p;
+//		}
+//}
+/////////////////////////////////////////////
+//void insert_list_after(node* top, node*& q, int x)
+//// insert x after position q
+//{
+//	node* p;
+//	p = new node;
+//	p->data = x;
+//	p->next = q->next;
+//	q->next = p;
+//}
+/////////////////////////////////////////////////////
+//node* find_address(node* top, int x)
+//{
+//	node* p;
+//	p = top;
+//	while (p && (p->data) != x)
+//		p = p->next;
+//	return p;
+//}
+///////////////////////////////////////////////////
+//void delete_element(node*& top, node* p)
+//{
+//	node* r; int x;
+//	if (p == top)
+//		pop(top, x);
+//
+//	else
+//	{
+//		r = previous(top, p);
+//		r->next = p->next;
+//		delete p;
+//	}
+//}
+//////////////////////////////////////////////////
+//
+//int max(node* top)
+//{
+//	int m = top->data;
+//	for (node* p = top; p; p = p->next)
+//		if (p->data > m)
+//			m = p->data;
+//	return m;
+//}
+//
+//int max_count(node* top)
+//{
+//	int m = top->data;
+//	int count_max = 1;
+//	for (node* p = top->next; p; p = p->next) {
+//		if (p->data > m) {
+//			m = p->data;
+//			count_max = 1;
+//		}
+//		else if (p->data == m)
+//			++count_max;
+//	}
+//	return count_max;
+//}
+//
+//void delete_all_data(node*& top, int data)
+//{
+//	while (find_address(top, data))
+//		delete_element(top, find_address(top, data));
+//}
+//
+//int main()
+//{
+//	ifstream in("arb.txt");
+//	ofstream out("out.txt");
+//	node* top = create_list(in);
+//	out << "list = ";
+//	show_list(out, top);
+//	/*int m = max(top);
+//	out << "max = " << m << endl;
+//	while (top && top->data == m)
+//	{
+//
+//		node* del = top;
+//		top = top->next;
+//		delete del;
+//	}
+//	node* p = top;
+//	while (p && p->next)
+//	{
+//		if (p->next->data == m)
+//		{
+//			node* del = p->next;
+//			p->next = del->next;
+//			delete del;
+//		}
+//		else p = p->next;
+//	}
+//
+//	out << "list = ";
+//	show_list(out, top);*/
+//
+//	delete_all_data(top, max(top));
+//	out << "list = ";
+//	show_list(out, top);
+//
+//	//out << max(top) << endl;
+//
+//	in.close();
+//	out.close();
+//	return 0;
+//
+//}
+
+
+
+
+
+#include<fstream>
+#include<iostream>
+using namespace std;
+
+struct node
+{
+	int data;
+	node* next;
+};
+////////////////////////////////////////////////
+bool empty_set(node* top)
+{
+	return top == NULL;
+}
+//////////////////////////////////////////////	
+void push(node*& top, node*& end, int data)
+{
+	node* p;
+	p = new node;
+	p->data = data;
+	p->next = NULL;
+	if (empty_set(top))
+	{
+		top = p;
+		end = p;
+	}
+	else
+	{
+		end->next = p;
+		end = p;
+	}
+}
+
+////////////////////////////////////////
+node* find_address(node* top, int x)
+{
+	node* p;
+	p = top;
+	while (p && (p->data) != x)
+		p = p->next;
+	return p;
+}
+///////////////////////////////////////////
+bool is_Member(node* top, int data)
+{
+	if (find_address(top, data)) return true; else return false;
+}
+//////////////////////////////////////////
+void create_set(ifstream& f, node*& top, node*& end)
+{
+	int x;
+	top = NULL;
+	end = NULL;
+	if (!f)
+	{
+		cout << "Can't open file!" << endl;
+		system("pause");
+		exit(-1);
+	}
+
+	while (f >> x)
+		if (!is_Member(top, x))
+			push(top, end, x);
+
+}
+//////////////////////////////////////////////////
+void order_set(node* top, node* end)
+{
+	int data;
+	node* p, * q;
+
+	p = top;
+	while (p != end)
+	{
+		q = p->next;
+		while (q)
+		{
+			if (p->data > q->data)
+			{
+				data = p->data;
+				p->data = q->data;
+				q->data = data;
+
+			}
+			q = q->next;
+		}
+		p = p->next;
+	}
+}
+////////////////////////////////////////////////////
+void copy_sets(node* top1, node* end1, node*& top2, node*& end2)
+{
+	top2 = NULL;
+	end2 = NULL;
+	while (top1)
+	{
+		push(top2, end2, top1->data);
+		top1 = top1->next;
+	}
+
+}
+///////////////////////////////////////////////////
+void union_sets(node* top1, node* end1, node* top2, node* end2,
+	node*& top3, node*& end3)
+{
+	top3 = NULL;
+	end3 = NULL;
+	copy_sets(top1, end1, top3, end3);
+	while (top2)
+	{
+		if (!is_Member(top3, top2->data))
+			push(top3, end3, top2->data);
+		top2 = top2->next;
+	}
+	order_set(top3, end3);
+}
+
+
+//////////////////////////////////////////////////
+void intersection_sets(node* top1, node* end1, node* top2, node* end2,
+	node*& top3, node*& end3)
+{
+	top3 = NULL;
+	end3 = NULL;
+
+	while (top2)
+	{
+		if (is_Member(top1, top2->data))
+			push(top3, end3, top2->data);
+		top2 = top2->next;
+	}
+	order_set(top3, end3);
+}
+////////////////////////////////////////////
+void  subtruction_sets(node* top1, node* end1, node* top2, node* end2,
+	node*& top3, node*& end3)
+{
+	top3 = NULL;
+	end3 = NULL;
+
+	while (top1)
+	{
+		if (!is_Member(top2, top1->data))
+			push(top3, end3, top1->data);
+		top1 = top1->next;
+	}
+	order_set(top3, end3);
+}
+
+/////////////////////////////////////////
+void symmetric_subtruction(node* top1, node* end1, node* top2, node* end2,
+	node*& top3, node*& end3)
+
+{
+	node* top4, * end4, * top5, * end5;
+
+	subtruction_sets(top1, end1, top2, end2, top4, end4);
+	subtruction_sets(top2, end2, top1, end1, top5, end5);
+	union_sets(top4, end4, top5, end5, top3, end3);
+	order_set(top3, end3);
+}
+/////////////////////////////////////////////
+void show_set(ofstream& f, node* top)
+{
+	f << " { ";
+	while (top)
+	{
+		f << top->data << " , ";
+		top = top->next;
+	}
+	f << " }  " << endl;
+}
+/////////////////////////////////////////////
+int  main()
+{
+	node* top1, * end1, * top2, * end2, * top3, * end3;
+	ifstream in1("data1.txt");
+	ifstream in2("data2.txt");
+	ofstream out("algebra_sets.txt");
+	create_set(in1, top1, end1);
+	out << "ALGEBRA OF SETS" << endl;
+	out << "set1: " << endl;
+	show_set(out, top1);
+	in1.close();
+	create_set(in2, top2, end2);
+	out << "set2: " << endl;
+	show_set(out, top2);
+	in2.close();
+
+	order_set(top1, end1);
+	out << "order set1=" << endl;
+	show_set(out, top1);
+
+	order_set(top2, end2);
+	out << "order set2=" << endl;
+	show_set(out, top2);
+
+	union_sets(top1, end1, top2, end2, top3, end3);
+	out << "set3=se1 U set2: " << endl;
+	show_set(out, top3);
+
+	intersection_sets(top1, end1, top2, end2, top3, end3);
+	out << "set3=se1 ^ set2: " << endl;
+	show_set(out, top3);
+
+	subtruction_sets(top1, end1, top2, end2, top3, end3);
+	out << "set3=set1 - set2: " << endl;
+	show_set(out, top3);
+
+	subtruction_sets(top2, end2, top1, end1, top3, end3);
+	out << "set3=set2 - set1: " << endl;
+	show_set(out, top3);
+
+	symmetric_subtruction(top1, end1, top2, end2, top3, end3);
+	out << "set3=(set1 - set2)U(set2 - set1): " << endl;
+	show_set(out, top3);
+	out.close();
+	system("pause");
+	return 0;
+
+}
